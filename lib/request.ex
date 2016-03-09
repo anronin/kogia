@@ -7,7 +7,6 @@ defmodule Kogia.Request do
                       {"Content-Type", "application/json"}
                    ]
   @put_header [{"Content-Type", "application/x-tar"}]
-
   @api_version "/v1.22"
 
   def get(client, path, headers \\ @default_headers), do: request(client, :get, path, "", headers)
@@ -90,7 +89,7 @@ defmodule Kogia.Request do
   end
   defp body_parser(%HTTPoison.Response{headers: headers, body: body}) do
     case List.keyfind(headers, "Content-Type", 0) do
-      {"Content-Type", "application/json"} -> Poison.decode!(body, keys: :atoms!)
+      {"Content-Type", "application/json"} -> Poison.decode!(body)
       {"Content-Type", "application/vnd.docker.raw-stream"} -> [headers, body]
       {"Content-Type", "text/plain; charset=utf-8"} -> body
       {"Content-Type", "application/x-tar"} -> [headers, body]

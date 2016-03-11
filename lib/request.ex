@@ -12,7 +12,7 @@ defmodule Kogia.Request do
   def get(client, path, headers \\ @default_headers), do: request(client, :get, path, "", headers)
   def delete(client, path, headers \\ @default_headers), do: request(client, :delete, path, "", headers)
   def post(client, path, body \\ "{}", headers \\ @default_headers), do: request(client, :post, path, body, headers)
-  def put(client, path, body \\ "{}", headers \\ @put_header), do: request(client, :put, path, body, headers)
+  def put(client, path, body \\ "{}", headers \\ @put_header, options), do: request(client, :put, path, body, headers, options)
 
   def request(client, method, path, body \\ "", headers \\ @default_headers, options \\ []) do
     url = client.server <> @api_version <> path

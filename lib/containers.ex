@@ -110,12 +110,12 @@ defmodule Kogia.Containers do
     error if unpacking the given content would cause an existing directory
     to be replaced with a non-directory and vice versa.
   """
-  @spec put_archive(String.t | Map.t, Map.t, String.t, Client.t) :: Map.t
-  def put_archive(container, params \\ %{path: "/"}, data, client)
-  def put_archive(container, params, data, client) when is_map(container), do: put_archive(container["Id"], params, data, client)
-  def put_archive(container, params, data, client) do
+  @spec put_archive(String.t | Map.t, Map.t, String.t, Client.t, List.t) :: Map.t
+  def put_archive(container, params \\ %{path: "/"}, data, client, options \\ [recv_timeout: 60_000])
+  def put_archive(container, params, data, client, options) when is_map(container), do: put_archive(container["Id"], params, data, client, options)
+  def put_archive(container, params, data, client, options) do
     params = URI.encode_query(params)
-    R.put(client, "/containers/#{container}/archive?" <> params, data)
+    R.put(client, "/containers/#{container}/archive?" <> params, data, options)
   end
 
   @doc """

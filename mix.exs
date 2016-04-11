@@ -5,10 +5,11 @@ defmodule Kogia.Mixfile do
     [app: :kogia,
      version: "0.0.1",
      elixir: "~> 1.2",
-     description: "An Elixir client for the Docker Remote API",
-     package: package,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     description: "An Elixir client for the Docker Remote API",
+     source_url: "https://github.com/anronin/kogia",
+     package: package,
      deps: deps]
   end
 
@@ -30,8 +31,13 @@ defmodule Kogia.Mixfile do
   end
 
   defp package do
-    [maintainers: ["anronin"],
-     licenses: ["MIT"],
-     links: %{"GitHub" => "https://github.com/anronin/kogia"}]
+    [
+      files: ["lib", "config", "mix.exs", "README.md"],
+      maintainers: ["anronin"],
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/anronin/kogia"
+      }
+    ]
   end
 end

@@ -26,7 +26,7 @@ defmodule Kogia.Mixfile do
       {:earmark, "~> 0.2.1", only: :docs},
       {:credo, "~> 0.3", only: [:dev, :test]},
       {:poison, "~> 2.0"},
-      {:httpoison, "~> 0.8"}
+      {:httpoison, "~> 0.9"}
     ]
   end
 

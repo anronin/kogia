@@ -13,7 +13,7 @@ defmodule Kogia do
     case tls_verify() do
       "1" ->
         %Client{
-          server: host_env() |> URI.parse() |> uri_to_string(false),
+          server: host_env() |> URI.parse() |> uri_to_string(),
           ssl_options: [
             certfile: to_charlist(cert_path_env() <> "/cert.pem"),
             keyfile: to_charlist(cert_path_env() <> "/key.pem")
